@@ -9,12 +9,7 @@ object WallService {
     private var posts = emptyArray<Post>()
     private var id = 1
     fun add(post: Post): Post {
-        for ((index, currentPost) in posts.withIndex()) {
-            if (currentPost.id == post.id) {
-                id =+ 1
-            }
-        }
-        posts += post.copy(id = post.id)
+        posts += post.copy(id = id++)
         return posts.last()
     }
 
