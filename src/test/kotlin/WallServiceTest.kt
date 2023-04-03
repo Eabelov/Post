@@ -13,8 +13,8 @@ class WallServiceTest {
     @Test
     fun updateExisting() {
         val service = WallService
-        service.add(Post(1, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null))
-        val update = Post(1, 2, "Test", 2, 2, 2, Like(2, "Name2"), "Type2", false, null)
+        service.add(Post(1, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null, emptyArray()))
+        val update = Post(1, 2, "Test", 2, 2, 2, Like(2, "Name2"), "Type2", false, null, emptyArray())
         val result = service.update(update)
         // проверяем результат (используйте assertTrue или assertFalse)
         assertTrue(result)
@@ -23,8 +23,8 @@ class WallServiceTest {
     @Test
     fun updateNotExisting() {
         val service = WallService
-        service.add(Post(1, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null))
-        val update = Post(3, 2, "Test", 2, 2, 2, Like(2, "Name2"), "Type2", false, null)
+        service.add(Post(1, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null, emptyArray()))
+        val update = Post(3, 2, "Test", 2, 2, 2, Like(2, "Name2"), "Type2", false, null, emptyArray())
         val result = service.update(update)
         // проверяем результат (используйте assertTrue или assertFalse)
         assertFalse(result)
@@ -33,7 +33,7 @@ class WallServiceTest {
     @Test
     fun addPost() {
         val service = WallService
-        val result = service.add(Post(1, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null))
-        assertEquals(1,result.id)
+        val result = service.add(Post(1, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null, emptyArray()))
+        assertEquals(1, result.id)
     }
 }

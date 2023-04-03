@@ -1,6 +1,6 @@
 fun main() {
-    println(WallService.add(Post(1,1,"Test",1,1,1, Like(1,"Name1"), "Type1", true, null)))
-    println(WallService.update(Post(1,2,"Test",2,2,2, Like(2,"Name2"), "Type2", false, null)))
+    println(WallService.add(Post(2, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null, emptyArray())))
+    println(WallService.update(Post(2, 2, "Test", 2, 2, 2, Like(2, "Name2"), "Type2", false, null, emptyArray())))
     WallService.clear()
 }
 
