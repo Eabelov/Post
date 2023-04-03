@@ -1,6 +1,24 @@
 fun main() {
-    println(WallService.add(Post(1, 1, "Test", 1, 1, 1, Like(1, "Name1"), "Type1", true, null, emptyArray())))
-    println(WallService.update(Post(1, 2, "Test", 2, 2, 2, Like(2, "Name2"), "Type2", false, null, emptyArray())))
+    println(
+        WallService.add(
+            Post(
+                1, 1, 1, 1, 1, "Test1",
+                1, 1, true, null, null, Like(1, "like"),
+                null, View(1), "PostType1", emptyArray(), Geo("Geo","11/11/11", null), 1, emptyArray(), true, true,
+                true, true, true, true, Donut(true, 1, null, true, "Mode"), 1
+            )
+        )
+    )
+    println(
+        WallService.update(
+            Post(
+                2, 2, 2, 2, 2, "Test2",
+                2, 2, false, null, null, Like(2, "like"),
+                null, View(2), "PostType2", emptyArray(), Geo("Geo","22/22/22", null), 2, emptyArray(), false, false,
+                false, false, false, false, Donut(true, 2, null, false, "Mode"), 2
+            )
+        )
+    )
     WallService.clear()
 }
 

@@ -1,14 +1,31 @@
 data class Post(
     val id: Int,
+    val ownerId: Int,
+    val fromId: Int,
+    val createdBy: Int,
     val date: Int,
     val text: String,
     val replyOwnerId: Int,
     val replyPostId: Int,
-    val friendsOnly: Int,
+    val friendsOnly: Boolean,
+    val comments: Comment?,
+    val copyright: Copyright?,
     val likes: Like,
+    val repost: Post?,
+    val views: View,
     val postType: String,
+    val attachments: Array<Attachment>,
+    val geo: Geo,
+    val signerId: Int,
+    val copyHistory: Array<Boolean>,
+    val canPin: Boolean,
     val canDelete: Boolean,
-    val original: Post?,
-    val attachments: Array<Attachment>
+    val canEdit: Boolean,
+    val isPinned: Boolean,
+    val MarkedAsAds: Boolean,
+    val isFavorite: Boolean,
+    val donut: Donut,
+    val postponedId: Int
 ) {
 }
+
