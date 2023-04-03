@@ -8,5 +8,6 @@ data class Post(
     val likes: Like,
     val postType: String,
     val canDelete: Boolean,
+    val original: Post?
 ) {
 }
