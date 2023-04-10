@@ -45,7 +45,7 @@ object WallService {
 
     private var posts = emptyArray<Post>()
     private var id = 1
-    private var comments = emptyArray<Comments>()
+    var comments = emptyArray<Comments>()
 
 
     fun createComment(postId: Int, comment: Comments): Comments {

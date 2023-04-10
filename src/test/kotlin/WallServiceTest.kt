@@ -106,9 +106,17 @@ class WallServiceTest {
         )
     }
 
-    @Test(expected = PostNotFoundException::class)
+    @Test
     fun shouldNotThrow() {
         val service = WallService
+        val post = Post(
+            1, 1, 1, 1, 1, "Test1",
+            1, 1, true, null, null, Like(1, "like"),
+            null, View(1), "PostType1", emptyArray(), Geo("Geo", "11/11/11", null), 1, emptyArray(), true, true,
+            true, true, true, true, Donut(true, 1, null, true, "Mode"), 1
+        )
+        service.add(post)
+
         val comment = Comments(
             1,
             1,
@@ -121,31 +129,9 @@ class WallServiceTest {
             emptyArray(),
             Thread(1, emptyArray(), true, true, true)
         )
+        service.createComment(post.id, comment)
 
-        service.add(
-            Post(
-                1, 1, 1, 1, 1, "Test1",
-                1, 1, true, null, null, Like(1, "like"),
-                null, View(1), "PostType1", emptyArray(), Geo("Geo", "11/11/11", null), 1, emptyArray(), true, true,
-                true, true, true, true, Donut(true, 1, null, true, "Mode"), 1
-            )
-        )
-
-        val createdComment = service.createComment(
-            2,
-            Comments(
-                1,
-                1,
-                11,
-                "test",
-                Donut(true, 1, null, true, "Mode"),
-                1,
-                1,
-                AudioAttachment("Voice", Audio("Voice1")),
-                emptyArray(),
-                Thread(1, emptyArray(), true, true, true)
-            )
-        )
-        assertEquals(comment, createdComment)
+        assertEquals(1, service.comments.size)
+        assertEquals(comment, service.comments.last())
     }
 }
