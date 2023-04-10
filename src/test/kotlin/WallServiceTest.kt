@@ -67,4 +67,85 @@ class WallServiceTest {
         )
         assertEquals(1, result.id)
     }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        // здесь код с вызовом функции, которая должна выкинуть PostNotFoundException
+        val service = WallService
+        service.add(
+            Post(
+                1, 1, 1, 1, 1, "Test1",
+                1, 1, true, null, null, Like(1, "like"),
+                null, View(1), "PostType1", emptyArray(), Geo("Geo", "11/11/11", null), 1, emptyArray(), true, true,
+                true, true, true, true, Donut(true, 1, null, true, "Mode"), 1
+            )
+        )
+        service.add(
+            Post(
+                2, 1, 1, 1, 1, "Test1",
+                1, 1, true, null, null, Like(1, "like"),
+                null, View(1), "PostType1", emptyArray(), Geo("Geo", "11/11/11", null), 1, emptyArray(), true, true,
+                true, true, true, true, Donut(true, 1, null, true, "Mode"), 1
+            )
+        )
+        service.createComment(
+            3,
+            Comments(
+                //несовпадение с первым элементом сразу выбрасывает ошибку в вашем варианте
+                1,
+                1,
+                11,
+                "test",
+                Donut(true, 1, null, true, "Mode"),
+                1,
+                1,
+                AudioAttachment("Voice", Audio("Voice1")),
+                emptyArray(),
+                Thread(1, emptyArray(), true, true, true)
+            ),
+        )
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldNotThrow() {
+        val service = WallService
+        val comment = Comments(
+            1,
+            1,
+            11,
+            "test",
+            Donut(true, 1, null, true, "Mode"),
+            1,
+            1,
+            AudioAttachment("Voice", Audio("Voice1")),
+            emptyArray(),
+            Thread(1, emptyArray(), true, true, true)
+        )
+
+        service.add(
+            Post(
+                1, 1, 1, 1, 1, "Test1",
+                1, 1, true, null, null, Like(1, "like"),
+                null, View(1), "PostType1", emptyArray(), Geo("Geo", "11/11/11", null), 1, emptyArray(), true, true,
+                true, true, true, true, Donut(true, 1, null, true, "Mode"), 1
+            )
+        )
+
+        val createdComment = service.createComment(
+            2,
+            Comments(
+                1,
+                1,
+                11,
+                "test",
+                Donut(true, 1, null, true, "Mode"),
+                1,
+                1,
+                AudioAttachment("Voice", Audio("Voice1")),
+                emptyArray(),
+                Thread(1, emptyArray(), true, true, true)
+            )
+        )
+        assertEquals(comment, createdComment)
+    }
 }
